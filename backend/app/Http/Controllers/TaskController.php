@@ -48,7 +48,7 @@ class TaskController extends Controller
 
     public function listAll()
     {
-        $tasks = Task::get();
+        $tasks = Task::orderBy('sort_order', 'asc')->get();
         return response()->json([
             'tasks' => $tasks
         ], 200);
