@@ -1,11 +1,12 @@
 import React from 'react';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 
 export default function TaskItem({task})
 {
     return (
-        <tr>
-            <td>{task.label}</td>
-        </tr>
+        <TableRow>
+            <TableCell>{task.label}</TableCell>
+        </TableRow>
     )
 }

@@ -17,7 +17,8 @@ class TaskController extends Controller
         $task->sort_order = $sort_order+1;
         $task->save();
         return response()->json([
-            'msg' => 'Task added successfully'
+            'msg' => 'Task added successfully',
+            'task' => $task
         ], 200);
     }
 
@@ -43,7 +44,14 @@ class TaskController extends Controller
 
     public function rearrange(Request $request)
     {
-
+        foreach($request->tasks as $key=>$task) {
+            $updated_task = Task::find($task['id']);
+            $updated_task->sort_order = $key;
+            $updated_task->save();
+        }
+        return response()->json([
+            'msg' => 'Tasks sorting updated'
+        ], 200);
     }
 
     public function listAll()
