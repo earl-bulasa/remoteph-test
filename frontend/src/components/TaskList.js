@@ -5,6 +5,7 @@ import TaskForm from './TaskForm';
 import axios from 'axios';
 import {arrayMoveImmutable} from 'array-move';
 import eventBus from '../EventBus';
+import Alert from '@mui/material/Alert';
 
 
 export default function TaskList()
@@ -26,7 +27,9 @@ export default function TaskList()
         console.log(tempTasks);
         setTasks(tempTasks);
         axios.post('http://localhost:8000/api/tasks/rearrange', {tasks: tempTasks}).then((response) => {
-            console.log(response.data);
+            console.log(response.status);
+        }).catch((error) => {
+            console.log('error', error.response.data);
         });
     };
 
@@ -65,7 +68,13 @@ export default function TaskList()
     return (
         <div>
             <TaskForm task={task} addTask={addTask} updateTask={updateTask} />
-            <SortableList tasks={tasks} onSortEnd={onSortEnd}  />
+
+            {
+                tasks.length >= 1 ?
+                <SortableList tasks={tasks} onSortEnd={onSortEnd}  /> :
+                <Alert severity="info">There are no available tasks.</Alert>
+            }
+            
         </div>
         
     )
