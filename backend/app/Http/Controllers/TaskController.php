@@ -15,6 +15,7 @@ class TaskController extends Controller
         $task = new Task;
         $task->label = $request->label;
         $task->sort_order = $sort_order+1;
+        $task->completed_at = null;
         $task->save();
         return response()->json([
             'msg' => 'Task added successfully',
@@ -39,7 +40,8 @@ class TaskController extends Controller
         $task->completed_at = is_null($task->completed_at) ? Carbon::now() : null;
         $task->save();
         return response()->json([
-            'msg' => 'Task completion updated'
+            'msg' => 'Task completion updated',
+            'task' => $task
         ], 200);
     }
 

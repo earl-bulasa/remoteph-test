@@ -36,10 +36,9 @@ export default function TaskList()
     }
 
     function updateTask(updated_task) {
-        console.log(updated_task);
         let temp_tasks = [...tasks];
         temp_tasks.find((obj, index) => {
-            if(obj.id == updated_task.id) {
+            if(obj.id === updated_task.id) {
                 temp_tasks[index] = updated_task;
                 return true;
             }
@@ -51,12 +50,18 @@ export default function TaskList()
 
     useEffect(() => {
         getTasks();
+    }, []);
+    useEffect(() => {
         eventBus.on('editTask', (value) => {
             // console.log(value.task);
             setTask(value.task);
         })
-    }, []);
-
+        eventBus.on('updateCompletion', (value) => {
+            // console.log(value);
+            
+            updateTask(value.temp_task);
+        })
+    });
     return (
         <div>
             <TaskForm task={task} addTask={addTask} updateTask={updateTask} />
