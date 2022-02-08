@@ -1,5 +1,17 @@
+@font-face {
+  font-family: 'RubikMedium';
+  src: url('./font/Rubik-Medium.ttf') format('truetype');
+}
+
+* {
+  font-family: 'RubikMedium', sans-serif !important;
+}
+
 .App {
   text-align: center;
+  padding: 20px;
+  width: 50%;
+  margin: auto;
 }
 
 .App-logo {
@@ -34,5 +46,12 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 720px)
+{
+  .App {
+    width: 100%;
   }
 }

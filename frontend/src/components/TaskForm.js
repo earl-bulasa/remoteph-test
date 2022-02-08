@@ -49,14 +49,14 @@ export default function TaskForm({task, addTask, updateTask})
     }
 
     return (
-        <form onSubmit={saveTask}>
+        <form onSubmit={saveTask} style={{marginBottom: "10px"}}>
             {
                 task !== null &&
                 <input type="hidden" name="user_id" value={taskData.id} />
             }
             
             <TextField hiddenLabel name="label" size="small" style={{marginRight: '20px'}} value={taskData !== null ? taskData.label : ""} onChange={updateLabel}/>
-            <Button variant="contained" type="submit">Save Task</Button>
+            <Button variant="contained" className="Submit-button" style={{color: '#dbe9fd'}} type="submit">Save Task</Button>
         </form>
     )
 }

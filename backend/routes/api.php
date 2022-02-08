@@ -15,8 +15,12 @@ use Illuminate\Http\Request;
 
 Route::get('/tasks', 'TaskController@listAll');
 Route::post('/tasks/rearrange', 'TaskController@rearrange');
-Route::post('/task', 'TaskController@store');
-Route::put('/task/{id}', 'TaskController@update');
+
+Route::group(['middleware' => ['allow_duplicates']], function() {
+    Route::post('/task', 'TaskController@store');
+    Route::put('/task/{id}', 'TaskController@update');
+});
+
 Route::put('/task/complete/{id}', 'TaskController@updateCompletion');
 
 // Route::resource('/task', 'TaskController');

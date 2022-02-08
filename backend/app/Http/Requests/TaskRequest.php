@@ -31,12 +31,12 @@ class TaskRequest extends FormRequest
         if($this->isMethod('post'))
         {
             return [
-                'label' => !empty($allow_duplicates) ? $allow_duplicates->value == "0" ? ['required', 'unique:tasks']: ['required'] : ['required'],
+                'label' => $allow_duplicates->value == "0" ? ['required', 'unique:tasks']: ['required'],
             ];
         }
 
         return [
-            'label' => !empty($allow_duplicates) ? $allow_duplicates->value == "0" ? ['required', Rule::unique('tasks')->ignore($this->route('id'))]: ['required'] : ['required'],
+            'label' => $allow_duplicates->value == "0" ? ['required', Rule::unique('tasks')->ignore($this->route('id'))]: ['required'],
         ];
         
     }

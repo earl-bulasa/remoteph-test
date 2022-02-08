@@ -26,7 +26,7 @@ export default function TaskItem({task})
     return (
         <TableRow>
             <TableCell>{task.label}</TableCell>
-            <TableCell><Button variant="contained" onClick={setTask} style={{marginRight: "20px"}}>Edit</Button><Button variant="contained" onClick={updateCompletion}>{task.completed_at === null ? 'Set to Complete' : 'Set to Incomplete'}</Button></TableCell>
+            <TableCell><Button variant="contained" onClick={setTask} style={{marginRight: "20px"}} className="Edit-button">Edit</Button><Button variant="contained" onClick={updateCompletion} className="Completion-button">{task.completed_at === null ? 'Set to Complete' : 'Set to Incomplete'}</Button></TableCell>
         </TableRow>
     )
 }

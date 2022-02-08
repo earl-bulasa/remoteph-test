@@ -1,0 +1,35 @@
+form .Submit-button {
+    background-color: #0b6bf2;
+    border-color: #0b6bf2;;
+}
+
+td .Edit-button {
+    background-color: #00c1d4;
+    border-color: #00c1d4;
+}
+
+td .Completion-button {
+    background-color: #f7c137;
+    border-color: #f7c137;
+}
+
+form .Submit-button:hover {
+    background-color: #0243EB;
+    border-color: #0243EB;;
+}
+
+td .Edit-button:hover {
+    background-color: #00a6c0;
+    border-color: #00a6c0;
+}
+
+td .Completion-button:hover {
+    background-color: #f3a618;
+    border-color: #f3a618;
+}
+
+@media only screen and (max-width: 720px) {
+    td .Edit-button {
+        margin-bottom: 10px;
+    }
+}

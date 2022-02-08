@@ -16,7 +16,7 @@ export default function TaskTable({tasks})
 
     return (
         <TableContainer component={Paper}>
-            <Table>
+            <Table className="Task-table">
                 <TableHead>
                     <TableRow>
                         <TableCell align="left">Task</TableCell>
