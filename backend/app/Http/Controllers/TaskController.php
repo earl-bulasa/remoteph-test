@@ -28,7 +28,8 @@ class TaskController extends Controller
         $task->label = $request->label;
         $task->save();
         return response()->json([
-            'msg' => 'Task updated successfully'
+            'msg' => 'Task updated successfully',
+            'task' => $task
         ], 200);
     }
 

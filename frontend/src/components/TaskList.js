@@ -4,12 +4,13 @@ import TaskTable from './TaskTable';
 import TaskForm from './TaskForm';
 import axios from 'axios';
 import {arrayMoveImmutable} from 'array-move';
+import eventBus from '../EventBus';
 
 
 export default function TaskList()
 {
     const [tasks, setTasks] = useState([]);
-    const [task, setTask] = useState(0);
+    const [task, setTask] = useState(null);
 
     const SortableList = SortableContainer(({tasks}) => <TaskTable tasks={tasks}></TaskTable>)
 
@@ -31,16 +32,35 @@ export default function TaskList()
 
     function addTask(new_task) {
         setTasks([...tasks, new_task]);
+        setTask(null);
+    }
+
+    function updateTask(updated_task) {
+        console.log(updated_task);
+        let temp_tasks = [...tasks];
+        temp_tasks.find((obj, index) => {
+            if(obj.id == updated_task.id) {
+                temp_tasks[index] = updated_task;
+                return true;
+            }
+        });
+        setTasks(temp_tasks);
+        setTask(null);
+
     }
 
     useEffect(() => {
         getTasks();
+        eventBus.on('editTask', (value) => {
+            // console.log(value.task);
+            setTask(value.task);
+        })
     }, []);
 
     return (
         <div>
-            <TaskForm task_id={task} addTask={addTask} />
-            <SortableList tasks={tasks} onSortEnd={onSortEnd} />
+            <TaskForm task={task} addTask={addTask} updateTask={updateTask} />
+            <SortableList tasks={tasks} onSortEnd={onSortEnd}  />
         </div>
         
     )

@@ -19,7 +19,8 @@ export default function TaskTable({tasks})
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell align="right">Task</TableCell>
+                        <TableCell align="left">Task</TableCell>
+                        <TableCell align="left">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
